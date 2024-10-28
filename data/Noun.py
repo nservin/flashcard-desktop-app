@@ -1,8 +1,8 @@
-import time
 class Noun():
-    def __init__(self, wordName:str, meaning:str):
+    def __init__(self, wordName:str, meaning:str, gender:str):
         self._name = wordName
         self._means = meaning
+        self._gender = gender
         self._date = 0
         self._inter = 0
 
@@ -12,19 +12,20 @@ class Noun():
     @name.setter
     def name(self, new_name:str):
         self._name = new_name
-    @name.deleter
-    def name(self):
-        del self._name
-
+    
     @property
     def means(self):
         return self._means
     @means.setter
     def means(self, new_meaning:str):
         self._means = new_meaning
-    @means.deleter
-    def means(self):
-        del self._means
+    
+    @property
+    def gender(self):
+        return self._gender
+    @gender.setter
+    def gender(self, new_gender:str):
+        self._gender = new_gender
     
     @property
     def date(self):
@@ -32,9 +33,6 @@ class Noun():
     @date.setter
     def date(self, new_date:str):
         self._date = new_date
-    @date.deleter
-    def date(self):
-        del self._date
     
     @property
     def inter(self):
@@ -42,9 +40,9 @@ class Noun():
     @inter.setter
     def inter(self, new_interval:str):
         self._inter = new_interval
-    @inter.deleter
-    def inter(self):
-        del self._inter
+    
+    def __str__(self) -> str:
+        return f'word: {self._name}\nMeaning: {self._means}\n'
     
     
 

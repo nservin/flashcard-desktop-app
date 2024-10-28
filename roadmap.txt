@@ -1,0 +1,2 @@
+1. Arreglar el database para que tenga todas los atributos de un Noun
+3. 
