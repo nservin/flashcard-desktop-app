@@ -65,7 +65,6 @@ class MainMenu(wx.Panel):
         st.SetFont(font)
         # Add buttons into two grids
         sizer = wx.GridBagSizer(2, 1)
-    
         # Creates the buttoms for selecting a group of flashcards
         buttom1 = wx.Button(self, label = 'Mostrar flashcard')
         sizer.Add(buttom1, pos = (2, 9), flag = wx.EXPAND)
@@ -90,9 +89,9 @@ class FlashcardPanel(wx.Panel):
         self.SetSize(parent.Size)
         st = wx.StaticText(self, label="Word:\nmeaning:", pos = (200,50))
         sizer1 = wx.GridBagSizer(5, 5)
-        sizer1.Add(wx.Button(self, label = 'Fácil'), pos = (4, 4), flag = wx.EXPAND)
-        sizer1.Add(wx.Button(self, label = 'Medio'), pos = (3, 1), flag = wx.EXPAND)
-        sizer1.Add(wx.Button(self, label = 'Difícil'), flag = wx.EXPAND)
+        sizer1.Add(wx.Button(self, label = 'Fácil', pos = (200, 350)), pos = (3, 1), flag = wx.EXPAND)
+        sizer1.Add(wx.Button(self, label = 'Medio', pos = (300, 350)), pos = (3, 2), flag = wx.EXPAND)
+        sizer1.Add(wx.Button(self, label = 'Difícil', pos = (400, 350)), pos = (3, 3), flag = wx.EXPAND)
         self.SetSizer(sizer1)
         self.Show()
     def _set_main_menu_panel(self,pnl):
