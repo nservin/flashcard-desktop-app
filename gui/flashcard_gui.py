@@ -9,7 +9,6 @@ class MainFrame(wx.Frame):
         super().__init__(parent=None, title='Language app', size=(650, 450))
         self.panel = StartPanel(self)
         self.controller = controller
-        
         self._make_manu_bar()
         self.CreateStatusBar()
         self.SetStatusText("Welcome to myApp!")
@@ -28,7 +27,6 @@ class MainFrame(wx.Frame):
             menu_item = menu.Append(-1, each_label, each_status)
         self.Bind(wx.EVT_MENU, each_handler, menu_item)
         return menu
-
     def _menu_data(self):
         return (('&Settings',
                     ('&Text', "Un mensaje para mi amor...", self._on_text_btn), 
@@ -65,7 +63,6 @@ class StartPanel(wx.Panel):
         font.PointSize += 10
         font = font.Bold()
         st.SetFont(font)
-
     def _make_button_bar(self):
         button_label = self._button_bar_data()
         for i in range(8):
@@ -113,7 +110,6 @@ class FlashcardPanel(wx.Panel):
         font = font.Bold()
         st.SetFont(font)
         return st
-
     def _display_meaning(self):
         st = wx.StaticText(self, label= ' ', pos=(200, 100))
         font = st.GetFont()
@@ -135,6 +131,7 @@ class FlashcardPanel(wx.Panel):
                 ,('Aprendida', (400, 350), self._on_next, (3,3))
                 ,('Salir', (500, 350), self._on_fav, (3,4))
                 )
+
     def _on_repeat(self, event):
         pass
     def _on_next(self, event):
@@ -142,7 +139,6 @@ class FlashcardPanel(wx.Panel):
         self.update_queue()
         self.word = self.Parent.controller.next_word()
         self.st_word.SetLabel(self.word.name)
-
     def _on_fav(self, event):
         pass
     def _on_show(self, event):
@@ -152,7 +148,6 @@ class FlashcardPanel(wx.Panel):
         self.panel = StartPanel(self)
     def update_queue(self):
         self.Parent.controller.update_word_status(self.word)
-
 
 class Dashboard(wx.Panel):
     def __init__(self, parent):

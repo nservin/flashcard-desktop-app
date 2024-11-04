@@ -15,8 +15,8 @@ class Database:
             data = json.load(jsonfile)
         nouns = [Word(d['translation'], d['word'], d['gender'], d['status']) for d in data]
         return nouns    
-    def get_level_data(self, lvl:int):
-        return self.data[lvl:(50+lvl)]
+    def get_level_data(self, lvl: int):
+        return self.data[(lvl + 49 * lvl):(49 + lvl + 49 * lvl)]
 
     def update_status(self, word):
         pass
