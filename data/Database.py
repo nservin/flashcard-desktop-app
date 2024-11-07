@@ -17,11 +17,12 @@ class Database:
         return nouns    
     def get_level_data(self, lvl: int):
         return self.data[(lvl + 49 * lvl):(49 + lvl + 49 * lvl)]
-
+    def 
     def update_status(self, word):
         pass
     def set_default_data(self):
-        pass
+        default_data = self._read_data_file('default_database.json')
+    
     
 if __name__ == '__main__':
     nuevo = Database('scheduler')

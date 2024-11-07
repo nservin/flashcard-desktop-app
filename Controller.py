@@ -1,4 +1,5 @@
 """Documentame loco"""
+
 '''Create functions for:
     Processing user input
         Getting the list of nouns for each level
@@ -23,6 +24,7 @@ class Controller:
         self.fs_queue = []
     
     def start_study_session(self, level):
+        """Is called from StartMenu when a level is selected"""
         self.fs_queue = self.database.get_level_data(level)
         for word in self.fs_queue:
             if word.status == False:
