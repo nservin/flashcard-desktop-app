@@ -55,7 +55,6 @@ class StartPanel(wx.Panel):
         self.sizer = wx.GridBagSizer(2, 1)
         self._make_main_title()
         self._make_button_bar()
-        self.Show()
     
     def _make_main_title(self):
         st = wx.StaticText(self, label="Russian Flashcards", pos=(200, 10))
@@ -63,7 +62,11 @@ class StartPanel(wx.Panel):
         font.PointSize += 10
         font = font.Bold()
         st.SetFont(font)
+        self.Show()
     def _make_button_bar(self):
+        """Displays 40 buttons in a grid, one per level, each level contains 50 nouns.
+        And binds each button to the _set_study_panel() method
+        """
         button_label = self._button_bar_data()
         for i in range(8):
             for j in range(5):
@@ -71,7 +74,9 @@ class StartPanel(wx.Panel):
                 self.sizer.Add(btn, pos=(i + 3, j + 5), flag = wx.EXPAND)
                 self.Bind(wx.EVT_BUTTON, self._set_study_panel, btn)
         self.SetSizer(self.sizer)
+        self.Show()
     def _button_bar_data(self):
+        """Returns the nutton label for each level in the grid"""
         return ('Lvl.1\n','Lvl.2\n','Lvl.3\n','Lvl.4\n','Lvl.5\n',
                 'Lvl.6\n','Lvl.7\n','Lvl.8\n','Lvl.9\n','Lvl.10\n',
                 'Lvl.11\n','Lvl.12\n','Lvl.13\n','Lvl.14\n','Lvl.15\n',
@@ -82,6 +87,7 @@ class StartPanel(wx.Panel):
                 'Lvl.36\n','Lvl.37\n','Lvl.38\n','Lvl.39\n','Lvl.40\n',
                 )
     def _set_study_panel(self, event):
+        """Handles the button event """
         level = self._get_btn_lvl(event)
         self._set_flashcard(level)
         self._hide_start_menu()

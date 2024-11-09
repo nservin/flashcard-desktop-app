@@ -19,6 +19,13 @@ class Word():
         self._nextReview = datetime.today()
         
     @property
+    def id(self):
+        return self._id
+    @id.setter
+    def name(self, new_id: str):
+        self._id = new_id
+        
+    @property
     def name(self):
         return self._name
     @name.setter
