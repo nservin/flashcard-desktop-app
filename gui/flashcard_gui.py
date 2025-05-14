@@ -87,7 +87,7 @@ class StartPanel(wx.Panel):
                 'Lvl.36\n','Lvl.37\n','Lvl.38\n','Lvl.39\n','Lvl.40\n',
                 )
     def _set_study_panel(self, event):
-        """Handles the button event """
+        """Handles the button events """
         level = self._get_btn_lvl(event)
         self._set_flashcard(level)
         self._hide_start_menu()
