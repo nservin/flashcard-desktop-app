@@ -1,29 +1,15 @@
 """Documentame loco"""
 from datetime import datetime
 class Word():
-    def __init__(self
-                 ,word_id:int
-                 ,word_name: str
-                 ,word_meaning: str
-                 ,word_gender: str
-                 ,word_status: str
-    ):
-        self._id = word_id
+    def __init__(self, word_name: str, meaning: str, gender: str, status: str):
         self._name = word_name
-        self._meaning = word_meaning
-        self._gender = word_gender
+        self._meaning = meaning
+        self._gender = gender
         self._ease_factor = 2.5
         self._interval = 1
         self._repetitions = 0
-        self._status = word_status
+        self._status = status
         self._nextReview = datetime.today()
-        
-    @property
-    def id(self):
-        return self._id
-    @id.setter
-    def name(self, new_id: str):
-        self._id = new_id
         
     @property
     def name(self):

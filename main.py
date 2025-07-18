@@ -1,12 +1,11 @@
+
 import wx
+from Controller import Controller
 # import os
 # from gui.flashcard_gui import Window
 # print(os.path)
 
-
 app = wx.App()
-mainWindow = Window()
-mainWindow.Show()
-mainWindow.Centre()
+controller = Controller()
+#controller.getData(0)
 app.MainLoop()
-

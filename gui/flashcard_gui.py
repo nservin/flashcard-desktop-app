@@ -9,6 +9,7 @@ class MainFrame(wx.Frame):
         super().__init__(parent=None, title='Language app', size=(650, 450))
         self.panel = StartPanel(self)
         self.controller = controller
+        
         self._make_manu_bar()
         self.CreateStatusBar()
         self.SetStatusText("Welcome to myApp!")
@@ -27,6 +28,7 @@ class MainFrame(wx.Frame):
             menu_item = menu.Append(-1, each_label, each_status)
         self.Bind(wx.EVT_MENU, each_handler, menu_item)
         return menu
+
     def _menu_data(self):
         return (('&Settings',
                     ('&Text', "Un mensaje para mi amor...", self._on_text_btn), 
@@ -55,6 +57,7 @@ class StartPanel(wx.Panel):
         self.sizer = wx.GridBagSizer(2, 1)
         self._make_main_title()
         self._make_button_bar()
+        self.Show()
     
     def _make_main_title(self):
         st = wx.StaticText(self, label="Russian Flashcards", pos=(200, 10))
@@ -62,11 +65,8 @@ class StartPanel(wx.Panel):
         font.PointSize += 10
         font = font.Bold()
         st.SetFont(font)
-        self.Show()
+
     def _make_button_bar(self):
-        """Displays 40 buttons in a grid, one per level, each level contains 50 nouns.
-        And binds each button to the _set_study_panel() method
-        """
         button_label = self._button_bar_data()
         for i in range(8):
             for j in range(5):
@@ -74,9 +74,7 @@ class StartPanel(wx.Panel):
                 self.sizer.Add(btn, pos=(i + 3, j + 5), flag = wx.EXPAND)
                 self.Bind(wx.EVT_BUTTON, self._set_study_panel, btn)
         self.SetSizer(self.sizer)
-        self.Show()
     def _button_bar_data(self):
-        """Returns the nutton label for each level in the grid"""
         return ('Lvl.1\n','Lvl.2\n','Lvl.3\n','Lvl.4\n','Lvl.5\n',
                 'Lvl.6\n','Lvl.7\n','Lvl.8\n','Lvl.9\n','Lvl.10\n',
                 'Lvl.11\n','Lvl.12\n','Lvl.13\n','Lvl.14\n','Lvl.15\n',
@@ -87,12 +85,11 @@ class StartPanel(wx.Panel):
                 'Lvl.36\n','Lvl.37\n','Lvl.38\n','Lvl.39\n','Lvl.40\n',
                 )
     def _set_study_panel(self, event):
-        """Handles the button events """
         level = self._get_btn_lvl(event)
         self._set_flashcard(level)
         self._hide_start_menu()
     def _get_btn_lvl(self, event):
-        # Label is a string 'Lvl.#', label[4:] gets the numerical part of the string
+        """Label is a string 'Lvl.#', label[4:] gets the numerical part of the string."""
         return int(event.GetEventObject().GetLabel()[4:]) - 1
     def _set_flashcard(self, level):
         return self.Parent.controller.start_study_session(level)
@@ -116,6 +113,7 @@ class FlashcardPanel(wx.Panel):
         font = font.Bold()
         st.SetFont(font)
         return st
+
     def _display_meaning(self):
         st = wx.StaticText(self, label= ' ', pos=(200, 100))
         font = st.GetFont()
@@ -137,7 +135,6 @@ class FlashcardPanel(wx.Panel):
                 ,('Aprendida', (400, 350), self._on_next, (3,3))
                 ,('Salir', (500, 350), self._on_fav, (3,4))
                 )
-
     def _on_repeat(self, event):
         pass
     def _on_next(self, event):
@@ -145,6 +142,7 @@ class FlashcardPanel(wx.Panel):
         self.update_queue()
         self.word = self.Parent.controller.next_word()
         self.st_word.SetLabel(self.word.name)
+
     def _on_fav(self, event):
         pass
     def _on_show(self, event):
@@ -154,6 +152,7 @@ class FlashcardPanel(wx.Panel):
         self.panel = StartPanel(self)
     def update_queue(self):
         self.Parent.controller.update_word_status(self.word)
+
 
 class Dashboard(wx.Panel):
     def __init__(self, parent):
